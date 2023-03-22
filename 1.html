@@ -59,14 +59,21 @@
           font-size: 24px;
           margin-bottom: 10px;
         }
-  
+
         /* Style the images */
         .image {
-          width: 50%;
-          height: 50%;
-          object-fit: scale-down;
-          margin-bottom: 10px;
+          width:  calc(1920px / 2);
+          height: calc(1080px / 2);
+          object-fit: contain;
+          margin: 0 auto 10px auto;
+          border: 10px solid transparent;
+          border-image-source: url('grass.png');
+          border-image-slice: 30;
+          border-image-repeat: round;
+          box-shadow: 10px 10px 5px 0px rgb(19, 19, 19);
+          display: block;
         }
+
       </style>
 </head>
 <body>
