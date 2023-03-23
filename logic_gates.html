@@ -35,6 +35,8 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            position: relative;
+            text-align: center;
           }
     
           /* Style the box */
@@ -74,31 +76,63 @@
             display: block;
           }
 
-          /* Style the alt text */
-          .image:hover::before {
-            content: attr(alt);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            color: #f5f5f5;
-            filter: blur(4px); /* Add blur effect */
+          /* Style the search box */
+          #search {
+            margin-top: 10px;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            margin-right: 10px;
+            font-family: "Oslo Sans Office", sans-serif;
+            font-size: 20px;
+            transition: all 0.5s ease-in;
           }
 
+          /* Style the search button */
+          button {
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.5s ease-in;
+            font-family: "Oslo Sans Office", sans-serif;
+            font-size: 20px;
+          }
+
+          button:hover {
+            background-color: #3e8e41;
+            transition: all 0.5s ease-in;
+          }
         </style>
   </head>
   <body>
-      <div class="container">
-        <img class="image" src="images/andgate.png"    draggable="false" alt="andgate">
-        <img class="image" src="images/orgate.png"     draggable="false" alt="orgate">
-        <img class="image" src="images/rsnorlatch.png" draggable="false" alt="rsnorlatch">
-        <img class="image" src="images/xorgate.png"    draggable="false" alt="xorgate" onpointerover="imghover()">
-      </div>
+    <div class="container">
+      <input type="text" id="search" name="search" placeholder="type to find">
+      <button onclick="searchImage()">Search</button>
+    </div>    
+    <div class="container">
+      <img class="image" src="images/andgate.png"    draggable="false" alt="andgate" id="andgate">
+      <img class="image" src="images/orgate.png"     draggable="false" alt="orgate" id="orgate">
+      <img class="image" src="images/rsnorlatch.png" draggable="false" alt="rsnorlatch" id="rsnorlatch">
+      <img class="image" src="images/xorgate.png"    draggable="false" alt="xorgate" id="xorgate">
+    </div>
   </body>
+  
   <script>
-    function imghover(){
-      alert("hover");
+    function searchImage() {
+      const searchId = document.getElementById("search").value.toLowerCase();
+      const images = document.querySelectorAll(".image");
+      for (let i = 0; i < images.length; i++) {
+        const alt = images[i].alt.toLowerCase();
+        if (alt.includes(searchId)) {
+          images[i].style.display = "block";
+        } else {
+          images[i].style.display = "none";
+        }
+      }
     }
-  </script>
+  </script>    
 </html>
